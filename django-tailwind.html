@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  color: antiquewhite;
+}
+
+body {
+  background-color: #2e2e2e; /* Fundo escuro */            
+}
+
+span {
+  color: #1e1e1e;
+}
+
+pre, code {
+  /* background-color: #1e1e1e; Fundo escuro para blocos de código */
+  color: #1e1e1e; /* Cor do texto nos blocos de código */
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.0/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.17.0/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.17.0/dist/index.js"></script><script>(()=>{setTimeout(()=>{const{markmap:q,mm:v}=window,j=new q.Toolbar;j.attach(v);const we=j.render();we.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(we)})})()</script><script>((f,d,h,u)=>{const g=f();window.mm=g.Markmap.create("svg#mindmap",(d||g.deriveOptions)(u),h)})(()=>window.markmap,null,{"content":"Instalação do Tailwind no Projeto Django","children":[{"content":"PIP","children":[{"content":"Existe uma biblioteca do Python que facilita a integração do Tailwind nos projetos Django<pre><code class=\"language-bash\">pip install django-tailwind\n</code></pre>","children":[],"payload":{"lines":"5,9"}},{"content":"Também é necessário instalar uma biblioteca para recarregamento automático da página em desenvolvimento<pre><code class=\"language-bash\">pip install django-browser-reload\n</code></pre>","children":[],"payload":{"lines":"9,14"}}],"payload":{"lines":"3,4"}},{"content":"Configuração","children":[{"content":"Adicionar <code>'tailwind'</code> em <code>INSTALLED_APPS</code> no arquivo <code>settings.py</code><pre><code class=\"language-py\">INSTALLED_APPS = [\n    <span class=\"hljs-comment\"># other Django apps</span>\n    <span class=\"hljs-string\">'tailwind'</span>, <span class=\"hljs-comment\"># Adicione ao código</span>\n]\n</code></pre>","children":[],"payload":{"lines":"16,24"}}],"payload":{"lines":"14,15"}},{"content":"Configuração da app <code>theme</code>","children":[{"content":"\n<p data-lines=\"26,27\">Hora de criar a app Tailwind CSS para carregar todos os arquivos, normalmente chamada de <code>theme</code></p>\n<pre><code class=\"language-bash\">python manage.py tailwind init\n</code></pre>","children":[],"payload":{"lines":"26,31"}},{"content":"\n<p data-lines=\"31,32\">Depois é preciso adicionar <code>'theme'</code> em <code>INSTALLED_APPS</code> no arquivo <code>settings.py</code></p>\n<pre><code class=\"language-py\">INSTALLED_APPS = [\n    <span class=\"hljs-comment\"># other Django apps</span>\n    <span class=\"hljs-string\">'tailwind'</span>,\n    <span class=\"hljs-string\">'theme'</span>, <span class=\"hljs-comment\"># Adicione ao código</span>\n]\n</code></pre>","children":[],"payload":{"lines":"31,40"}},{"content":"\n<p data-lines=\"40,41\">Deve ser registrado o app <code>'theme'</code> gerado adicionando a seguinte linha no final do arquivo <code>settings.py</code></p>\n<pre><code class=\"language-py\">TAILWIND_APP_NAME = <span class=\"hljs-string\">'theme'</span>\n</code></pre>","children":[],"payload":{"lines":"40,45"}},{"content":"\n<p data-lines=\"45,46\">Certifique de que a lista <code>INTERNAL_IPS</code> esteja presente no arquivo <code>settings.py</code> e contenha o endereço <code>IP 127.0.0.1</code></p>\n<pre><code class=\"language-py\">INTERNAL_IPS = [\n    <span class=\"hljs-string\">\"127.0.0.1\"</span>,\n]\n</code></pre>","children":[],"payload":{"lines":"45,52"}},{"content":"\n<p data-lines=\"52,53\">OBSERVAÇÃO: Às vezes (especialmente no Windows), o executável Python não consegue encontrar o binário do <code>Node.js</code> instalado em seu sistema. <br> Neste caso, você precisa definir o caminho para o executável em <code>settings.py</code> manualmente.</p>","children":[{"content":"Como alternativa (e para máxima confiabilidade), você pode usar um caminho totalmente qualificado. Pode ser assim:","children":[],"payload":{"lines":"53,54"}}],"payload":{"lines":"52,58"}}],"payload":{"lines":"24,25"}},{"content":"Instalação das dependências","children":[{"content":"Instale as dependências CSS do Tailwind, executando o seguinte comando:<pre><code class=\"language-bash\">python manage.py tailwind install\n</code></pre>","children":[],"payload":{"lines":"60,65"}}],"payload":{"lines":"58,59"}},{"content":"Adicionando nos templates","children":[{"content":"No arquivo <code>base.html</code>, e nos demais templates, podemos adicionar as seguintes tags:<pre><code class=\"language-html\">{% load static tailwind_tags %}\n...\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">head</span>&gt;</span>\n    ...\n    {% tailwind_css %}\n    ...\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">head</span>&gt;</span>\n</code></pre>","children":[],"payload":{"lines":"67,78"}}],"payload":{"lines":"65,66"}},{"content":"Finalização da configuração do <code>django-browser-reload</code>","children":[{"content":"\n<p data-lines=\"80,81\">Vamos também adicionar e configurar django-browse-reload, que cuida das atualizações automáticas de página e css no modo de desenvolvimento. <br> Adicione-o a <code>INSTALLED_APPS</code> em <code>settings.py</code>:</p>\n<pre><code class=\"language-py\">INSTALLED_APPS = [\n    <span class=\"hljs-comment\"># other Django apps</span>\n    <span class=\"hljs-string\">'tailwind'</span>,\n    <span class=\"hljs-string\">'theme'</span>,\n    <span class=\"hljs-string\">'django_browser_reload'</span>, <span class=\"hljs-comment\"># Adicione isso no código</span>\n]\n</code></pre>","children":[],"payload":{"lines":"80,90"}},{"content":"\n<p data-lines=\"90,91\">Permanecendo em <code>settings.py</code>, adicione o middleware:</p>\n<pre><code class=\"language-py\">MIDDLEWARE = [\n    <span class=\"hljs-comment\"># ...</span>\n    <span class=\"hljs-string\">\"django_browser_reload.middleware.BrowserReloadMiddleware\"</span>, <span class=\"hljs-comment\"># Adicione no código</span>\n    <span class=\"hljs-comment\"># ...</span>\n]\n</code></pre>","children":[],"payload":{"lines":"90,99"}},{"content":"\n<p data-lines=\"99,100\">Inclua <code>django-browse-reload</code> URL em sua raiz <code>urls.py</code>:</p>\n<pre><code class=\"language-py\"><span class=\"hljs-keyword\">from</span> django.urls <span class=\"hljs-keyword\">import</span> include, path\n    urlpatterns = [\n        ...,\n        path(<span class=\"hljs-string\">\"__reload__/\"</span>, include(<span class=\"hljs-string\">\"django_browser_reload.urls\"</span>)), <span class=\"hljs-comment\"># Adicione esta linha no seu código</span>\n    ]\n</code></pre>","children":[],"payload":{"lines":"99,108"}}],"payload":{"lines":"78,79"}},{"content":"Finalização","children":[{"content":"\n<p data-lines=\"110,111\">Finalmente já deve ser capaz de usar as classes CSS do Tailwind no projeto Django.</p>","children":[],"payload":{"lines":"110,111"}},{"content":"\n<p data-lines=\"111,112\">Inicie o ambiente de desenvolvimento no terminal:</p>\n<pre><code class=\"language-bash\">python manage.py tailwind start\n</code></pre>","children":[],"payload":{"lines":"111,116"}},{"content":"\n<p data-lines=\"116,119\">Lembrando que para acompanhar as modificações sempre em tempo real é recomendado deixar sempre esse terminal<br>\nrodando e rodar o servidor em uma aba alternativa do terminal, se não será necessário ficar sempre<br>\nparando o servidor para rodar o comando <code>python manage.py tailwind build</code></p>","children":[],"payload":{"lines":"116,120"}}],"payload":{"lines":"108,109"}}],"payload":{"lines":"1,2"}},{"colorFreezeLevel":2})</script>
+</body>
+</html>
