@@ -1,5 +1,7 @@
 # Instalação do Tailwind no Projeto Django
 
+Documentação original [Django Tailwind]('https://django-tailwind.readthedocs.io/en/latest/installation.html')
+
 ## PIP
 
 - Existe uma biblioteca do Python que facilita a integração do Tailwind nos projetos Django
